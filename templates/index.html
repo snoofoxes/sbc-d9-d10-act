@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NAH ID WIN</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+</head>
+<body>
+<div class="container">
+    <form id="form" action="{{ url_for('data') }}" method="POST" onsubmit="submitForm(event)">
+    <label for="name">FirstName:</label><br>
+    <input type="text" id="name" name="name" required><br>
+    <label for="birthdate">Birthdate:</label><br>
+    <input type="date" id="birthdate" name="date" required><br>
+    <input type="submit" value="Display"><br>
+</form>
+<div id="result"></div>
+
+<script>
+    function submitForm(event) {
+        event.preventDefault(); 
+        
+        var formData = new FormData(document.getElementById("form")); 
+        
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var response = JSON.parse(this.responseText); 
+                displayResult(response); 
+            }
+        };
+
+        xhttp.open("POST", "{{ url_for('data') }}", true); 
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
+        xhttp.send(new URLSearchParams(formData).toString()); 
+    }
+
+    function displayResult(data) {
+        document.getElementById("result").innerHTML = `
+            <p>FirstName: ${data.firstname}</p>
+            <p>Age: ${data.age}</p>
+        `;
+    }
+</script>
+
+</body>
+</html>

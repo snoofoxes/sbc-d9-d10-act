@@ -1,0 +1,22 @@
+body{
+  font-family: "Times New Roman", Times, serif;
+  height: 100%;
+}
+
+form{
+	display: grid;
+	justify-content: center;
+
+
+}
+.container{
+	position: relative;
+	bottom: -150px;
+	right: -500px;
+	background: #83c799;
+	height: 100%;
+	width: 20%;
+}
+.result{
+	background: #c1f7e6;
+}

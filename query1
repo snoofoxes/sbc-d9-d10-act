@@ -1,0 +1,4 @@
+SELECT CONCAT(tbl_customer_info.fName, " ", tbl_customer_info.mName, " ", tbl_customer_info.lName, " ") AS FullName, tbl_movie_info.title AS Title, tbl_rents_info.requestedQty AS Quantity
+FROM ((tbl_rents_info
+INNER JOIN tbl_customer_info ON tbl_rents_info.tbl_customer_info_id = tbl_customer_info.id)
+      INNER JOIN tbl_movie_info ON tbl_rents_info.tbl_movie_info_id = tbl_movie_info.id);
